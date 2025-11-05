@@ -1,6 +1,6 @@
+#include <GL/glut.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <GL/glut.h>
 
 const int HORIZONTAL_WINDOW_DIMENSION = 1024;
 const int VERTICAL_WINDOW_DIMENSION = 512;
@@ -10,33 +10,36 @@ const int PLAYER_START_POSITION = 300;
 const int MAP_DIMENSIONS = 8;
 const int MAP_SIZE = 64;
 
-int mapX = MAP_DIMENSIONS, mapY=MAP_DIMENSIONS, mapS=MAP_SIZE;
+int mapX = MAP_DIMENSIONS, mapY = MAP_DIMENSIONS, mapS = MAP_SIZE;
 int map[] = {
-1,1,1,1,1,1,1,1,
-1,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,1,
-1,0,0,0,0,0,0,1,
-1,1,1,1,1,1,1,1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+    0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+    0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
 
-float px,py; //player position
+float px, py; // player position
 
 void buttons(unsigned char key, int x, int y) {
-  if (key == 'a') { px -= PLAYER_MOVEMENT; }
-  if (key == 'd') { px += PLAYER_MOVEMENT; }
-  if (key == 'w') { py -= PLAYER_MOVEMENT; }
-  if (key == 's') { py += PLAYER_MOVEMENT; }
+  if (key == 'a') {
+    px -= PLAYER_MOVEMENT;
+  }
+  if (key == 'd') {
+    px += PLAYER_MOVEMENT;
+  }
+  if (key == 'w') {
+    py -= PLAYER_MOVEMENT;
+  }
+  if (key == 's') {
+    py += PLAYER_MOVEMENT;
+  }
   glutPostRedisplay();
 }
 
 void drawPlayer() {
-  glColor3f(1, 1, 0); //this is yellow
+  glColor3f(1, 1, 0); // this is yellow
   glPointSize(8);
   glBegin(GL_POINTS);
-  glVertex2i(px,py);
+  glVertex2i(px, py);
   glEnd();
 }
 
@@ -47,13 +50,13 @@ void display() {
 }
 
 void init() {
-  glClearColor(0.3,0.3,0.3,0);
-  gluOrtho2D(0,HORIZONTAL_WINDOW_DIMENSION,VERTICAL_WINDOW_DIMENSION,0);
-  px=PLAYER_START_POSITION;
-  py=PLAYER_START_POSITION;
+  glClearColor(0.3, 0.3, 0.3, 0);
+  gluOrtho2D(0, HORIZONTAL_WINDOW_DIMENSION, VERTICAL_WINDOW_DIMENSION, 0);
+  px = PLAYER_START_POSITION;
+  py = PLAYER_START_POSITION;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
   glutInitWindowSize(HORIZONTAL_WINDOW_DIMENSION, VERTICAL_WINDOW_DIMENSION);
